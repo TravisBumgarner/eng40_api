@@ -4,57 +4,70 @@ from django.db import models
 class Category(models.Model):
     name = models.CharField(max_length=200)
 
+    def __unicode__(self):
+       return self.name
 
-class EngineeringProject(models.Model):
-    category = models.ManyToManyField("Category")
-    date = models.DateTimeField()
-    description = models.TextField()
-    image = models.ManyToManyField("EngineeringImage")
+    class Meta:
+        verbose_name_plural = 'Categories'
+
+
+class Project(models.Model):
     name = models.CharField(max_length=200)
-    skill = models.ManyToManyField("Skill")
-    tool = models.ManyToManyField("Tool")
-    video = models.ManyToManyField("Video")
+    category = models.ManyToManyField("Category", blank=True)
+    description = models.TextField(blank=True)
+    start_date = models.DateField(null=True)
+    end_date = models.DateField(null=True)
+    skill = models.ManyToManyField("Skill", blank=True)
+    tool = models.ManyToManyField("Tool", blank=True)
+    image = models.ManyToManyField("Image", blank=True)
+    video = models.ManyToManyField("Video", blank=True)
+
+    def __unicode__(self):
+       return self.name
 
 
-class EngineeringImage(models.Model):
+class Image(models.Model):
     name = models.CharField(max_length=200)
-    src = models.URLField()
+    external_src = models.URLField(blank=True)
+    local_src = models.ImageField(blank=True)
+    camera = models.CharField(max_length=200, blank=True)
+    exposure = models.CharField(max_length=200, blank=True)
+
+    # def clean(self):
+    # TODO How to handle both types of src?
+
+    def __unicode__(self):
+       return self.name
 
 
 class Link(models.Model):
     name = models.CharField(max_length=200)
-    src = models.URLField()
-    image = models.ManyToManyField("PhotoImage")
+    src = models.URLField(blank=True)
+    image = models.ManyToManyField("Image", blank=True)
 
-
-class PhotoProject(models.Model):
-    category = models.ManyToManyField("Category")
-    date = models.DateTimeField()
-    description = models.TextField()
-    image = models.ManyToManyField("PhotoImage")
-    name = models.CharField(max_length=200)
-    skill = models.ManyToManyField("Skill")
-    tool = models.ManyToManyField("Tool")
-    video = models.ManyToManyField("Video")
-
-
-class PhotoImage(models.Model):
-    name = models.CharField(max_length=200)
-    src = models.URLField()
-    camera = models.CharField(max_length=200)
-    exposure = models.CharField(max_length=200)
+    def __unicode__(self):
+       return self.name
 
 
 class Skill(models.Model):
+    name = models.CharField(max_length=200, )
     category = models.ManyToManyField("Category")
-    name = models.CharField(max_length=200)
     rating = models.CharField(max_length=50)
+
+    def __unicode__(self):
+       return "{} - {}".format(self.name, self.category)
 
 
 class Tool(models.Model):
     name = models.CharField(max_length=200)
 
+    def __unicode__(self):
+       return self.name
+
 
 class Video(models.Model):
     name = models.CharField(max_length=200)
     src = models.URLField()
+
+    def __unicode__(self):
+       return self.name
