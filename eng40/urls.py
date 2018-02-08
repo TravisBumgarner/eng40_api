@@ -20,9 +20,10 @@ from django.views.static import serve
 from eng40 import settings
 
 urlpatterns = [
+    url(r'^', include('api.urls')),
     url(r'^admin/', admin.site.urls),
-    url(r'^foo-auth/', include('rest_framework.urls'))
 ]
+
 if settings.DEBUG:
     urlpatterns += [
         url(r'^media/(?P<path>.*)$', serve, {
