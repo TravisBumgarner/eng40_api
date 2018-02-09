@@ -11,21 +11,6 @@ class Category(models.Model):
         verbose_name_plural = 'Categories'
 
 
-class Project(models.Model):
-    name = models.CharField(max_length=200)
-    category = models.ManyToManyField("Category", blank=True)
-    description = models.TextField(blank=True)
-    start_date = models.DateField(null=True)
-    end_date = models.DateField(null=True)
-    skill = models.ManyToManyField("Skill", blank=True)
-    tool = models.ManyToManyField("Tool", blank=True)
-    image = models.ManyToManyField("Image", blank=True)
-    video = models.ManyToManyField("Video", blank=True)
-
-    def __unicode__(self):
-       return self.name
-
-
 class Image(models.Model):
     name = models.CharField(max_length=200)
     external_src = models.URLField(blank=True)
@@ -43,19 +28,45 @@ class Image(models.Model):
 class Link(models.Model):
     name = models.CharField(max_length=200)
     src = models.URLField(blank=True)
+    image = models.OneToOneField(
+        Image,
+        blank=True,
+        on_delete=models.CASCADE
+    )
+
+    def __unicode__(self):
+       return self.name
+
+
+class Project(models.Model):
+    name = models.CharField(max_length=200)
+    category = models.ManyToManyField("Category", blank=True)
+    description = models.TextField(blank=True)
+    start_date = models.DateField(null=True)
+    end_date = models.DateField(null=True)
+    skill = models.ManyToManyField("Skill", blank=True)
+    tool = models.ManyToManyField("Tool", blank=True)
     image = models.ManyToManyField("Image", blank=True)
+    video = models.ManyToManyField("Video", blank=True)
 
     def __unicode__(self):
        return self.name
 
 
 class Skill(models.Model):
+    choices = [
+        ("novice", "Novice"),
+        ("intermediate", "Intermediate"),
+        ("advanced", "Advanced"),
+        ("expert", "Expert")
+    ]
+
     name = models.CharField(max_length=200, )
-    category = models.ManyToManyField("Category")
-    rating = models.CharField(max_length=50)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    rating = models.CharField(max_length=50, choices=choices)
 
     def __unicode__(self):
-       return "{} - {}".format(self.name, self.category)
+       return self.name
 
 
 class Tool(models.Model):
@@ -71,3 +82,6 @@ class Video(models.Model):
 
     def __unicode__(self):
        return self.name
+
+
+

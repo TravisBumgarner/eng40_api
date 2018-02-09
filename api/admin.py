@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.contrib import admin
 
-from api.models import Category, Image, Video, Project, Link, Skill, Tool
+from api.models import *
 
 # Register your models here.
 
@@ -18,27 +18,26 @@ class ImageAdmin(admin.ModelAdmin):
     pass
 
 
-@admin.register(Project)
-class ProjectAdmin(admin.ModelAdmin):
-    pass
-
-
-@admin.register(Video)
-class VideoAdmin(admin.ModelAdmin):
-    pass
-
-
 @admin.register(Link)
 class LinkAdmin(admin.ModelAdmin):
     pass
 
 
+@admin.register(Project)
+class ProjectAdmin(admin.ModelAdmin):
+    pass
+
+
 @admin.register(Skill)
 class SkillAdmin(admin.ModelAdmin):
-    pass
+    list_display = ("name", "category")
 
 
 @admin.register(Tool)
 class ToolAdmin(admin.ModelAdmin):
     pass
 
+
+@admin.register(Video)
+class VideoAdmin(admin.ModelAdmin):
+    pass

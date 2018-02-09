@@ -1,18 +1,18 @@
 from django.conf.urls import url, include
 from rest_framework import routers
-from .viewsets import SkillViewSet
+
+from .viewsets import *
 
 router = routers.DefaultRouter()
 
-# Used to simplify registering endpoints
-
-
-def register(route, viewset, *args, **kwargs):
-    router.register(route, viewset, *args, **kwargs)
-
-# Register your API endpoints here, example:
-# register(r'name_of_endpoint_link', YourViewSet)
-register(r'skills', SkillViewSet)
+# List alphabetically for django admin
+router.register(r'categories', CategoryViewSet)
+router.register(r'images', ImageViewSet)
+router.register(r'links', LinkViewSet)
+router.register(r'projects', ProjectViewSet)
+router.register(r'skills', SkillViewSet)
+router.register(r'tools', ToolViewSet)
+router.register(r'videos', VideoViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),
