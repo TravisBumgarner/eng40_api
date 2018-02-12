@@ -30,7 +30,7 @@ class ProjectAdmin(admin.ModelAdmin):
 
 @admin.register(Skill)
 class SkillAdmin(admin.ModelAdmin):
-    list_display = ("name", "category")
+    list_display = ("name", "category", "rating")
 
 
 @admin.register(Tool)
