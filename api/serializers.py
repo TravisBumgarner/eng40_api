@@ -2,6 +2,18 @@ from .models import *
 from rest_framework import serializers
 
 
+class AuthorSerializer(serializers.ModelSerializer):
+    link = serializers.StringRelatedField(many=True)
+
+    class Meta:
+        model = Author
+        fields = (
+            'name',
+            'description',
+            'link'
+        )
+
+
 class CategorySerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -45,6 +57,7 @@ class ProjectSerializer(serializers.ModelSerializer):
     image = serializers.StringRelatedField(many=True)
     video = serializers.StringRelatedField(many=True)
     skill = serializers.StringRelatedField(many=True)
+    link = serializers.StringRelatedField(many=True)
 
     class Meta:
         model = Project

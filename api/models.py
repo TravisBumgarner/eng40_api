@@ -1,6 +1,14 @@
 from django.db import models
 
 
+class Author(models.Model):
+    name = models.CharField(max_length=200)
+    description = models.TextField(blank=True)
+    link = models.ManyToManyField("Link", blank=True)
+    def __unicode__(self):
+       return self.name
+
+
 class Category(models.Model):
     name = models.CharField(max_length=200)
 
@@ -42,6 +50,7 @@ class Project(models.Model):
     name = models.CharField(max_length=200)
     category = models.ManyToManyField("Category", blank=True)
     description = models.TextField(blank=True)
+    link = models.ManyToManyField("Link", blank=True)
     start_date = models.DateField(null=True)
     end_date = models.DateField(null=True)
     skill = models.ManyToManyField("Skill", blank=True)
