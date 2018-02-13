@@ -80,7 +80,8 @@ class Skill(models.Model):
 
 class Tool(models.Model):
     name = models.CharField(max_length=200)
-
+    category = models.ManyToManyField("Category", blank=True)
+    
     def __unicode__(self):
        return self.name
 

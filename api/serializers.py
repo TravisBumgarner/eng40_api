@@ -72,6 +72,7 @@ class ProjectSerializer(serializers.ModelSerializer):
             'tool',
             'image',
             'video',
+            'link',
         )
 
 
@@ -95,7 +96,8 @@ class ToolSerializer(serializers.ModelSerializer):
         model = Tool
         fields = (
             'id',
-            'name'
+            'name',
+            'category',
         )
 
 
