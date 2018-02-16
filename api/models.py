@@ -3,65 +3,59 @@ from django.db import models
 
 class Author(models.Model):
     name = models.CharField(max_length=200)
-    description = models.TextField(blank=True)
+    description = models.TextField()
     link = models.ManyToManyField("Link", blank=True)
-    photo = models.OneToOneField("Image", blank=True)
+    photo = models.OneToOneField("Image", blank=True, null=True)
 
     def __unicode__(self):
-       return self.name
+         return self.name
 
 
 class Category(models.Model):
     name = models.CharField(max_length=200)
 
     def __unicode__(self):
-       return self.name
+         return self.name
 
     class Meta:
         verbose_name_plural = 'Categories'
 
 
-class Image(models.Model):
+class Project(models.Model):
     name = models.CharField(max_length=200)
-    external_src = models.URLField(blank=True)
-    local_src = models.ImageField(blank=True)
-    camera = models.CharField(max_length=200, blank=True)
-    exposure = models.CharField(max_length=200, blank=True)
-
-    # def clean(self):
-    # TODO How to handle both types of src?
+    category = models.ManyToManyField("Category", blank=True)
+    description = models.TextField(blank=True, null=True)
+    start_date = models.DateField(null=True)
+    end_date = models.DateField(null=True)
+    skill = models.ManyToManyField("Skill", blank=True)
+    video = models.ManyToManyField("Video", blank=True)
 
     def __unicode__(self):
-       return self.name
+         return self.name
+
+
+class Image(models.Model):
+    name = models.CharField(max_length=200)
+    local_src = models.ImageField(blank=True, null=True)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, blank=True, null=True, related_name="project_image")
+
+    def __unicode__(self):
+         return self.name
 
 
 class Link(models.Model):
-    category = models.ManyToManyField("Category", blank=True)
     name = models.CharField(max_length=200)
-    src = models.URLField(blank=True)
+    src = models.URLField(blank=True, null=True)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, blank=True, null=True, related_name='project_link')
     image = models.OneToOneField(
         Image,
         blank=True,
+        null=True,
         on_delete=models.CASCADE
     )
 
     def __unicode__(self):
-       return self.name
-
-
-class Project(models.Model):
-    name = models.CharField(max_length=200)
-    category = models.ManyToManyField("Category", blank=True)
-    description = models.TextField(blank=True)
-    link = models.ManyToManyField("Link", blank=True)
-    start_date = models.DateField(null=True)
-    end_date = models.DateField(null=True)
-    skill = models.ManyToManyField("Skill", blank=True)
-    image = models.ManyToManyField("Image", blank=True)
-    video = models.ManyToManyField("Video", blank=True)
-
-    def __unicode__(self):
-       return self.name
+         return self.name
 
 
 class Skill(models.Model):
@@ -73,11 +67,11 @@ class Skill(models.Model):
     ]
 
     name = models.CharField(max_length=200, )
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    rating = models.CharField(max_length=50, choices=choices)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True)
+    rating = models.CharField(max_length=50, choices=choices, blank=True, null=True)
 
     def __unicode__(self):
-       return self.name
+         return self.name
 
 
 class Video(models.Model):
@@ -85,7 +79,7 @@ class Video(models.Model):
     src = models.URLField()
 
     def __unicode__(self):
-       return self.name
+        return self.name
 
 
 

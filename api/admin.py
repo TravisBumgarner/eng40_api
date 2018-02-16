@@ -7,6 +7,17 @@ from api.models import *
 
 # Register your models here.
 
+
+class LinkInline(admin.TabularInline):
+    model = Link
+    extra = 3
+
+
+class ImageInline(admin.TabularInline):
+    model = Image
+    extra = 3
+
+
 @admin.register(Author)
 class AuthorAdmin(admin.ModelAdmin):
     pass
@@ -29,7 +40,8 @@ class LinkAdmin(admin.ModelAdmin):
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
-    pass
+    inlines = (LinkInline, ImageInline)
+    filter_horizontal = ['skill', 'category']
 
 
 @admin.register(Skill)
