@@ -12,7 +12,6 @@ router.register(r'images', ImageViewSet)
 router.register(r'links', LinkViewSet)
 router.register(r'projects', ProjectViewSet)
 router.register(r'skills', SkillViewSet)
-router.register(r'tools', ToolViewSet)
 router.register(r'videos', VideoViewSet)
 
 

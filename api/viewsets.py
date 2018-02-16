@@ -39,12 +39,6 @@ class SkillViewSet(ReadOnlyModelViewSet):
     pagination_class = None
 
 
-class ToolViewSet(ReadOnlyModelViewSet):
-    queryset = Tool.objects.all()
-    serializer_class = ToolSerializer
-    pagination_class = None
-
-
 class VideoViewSet(ReadOnlyModelViewSet):
     queryset = Video.objects.all()
     serializer_class = VideoSerializer

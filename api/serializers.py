@@ -53,7 +53,6 @@ class LinkSerializer(serializers.ModelSerializer):
 
 class ProjectSerializer(serializers.ModelSerializer):
     category = serializers.StringRelatedField(many=True)
-    tool = serializers.StringRelatedField(many=True)
     image = serializers.StringRelatedField(many=True)
     video = serializers.StringRelatedField(many=True)
     skill = serializers.StringRelatedField(many=True)
@@ -69,7 +68,6 @@ class ProjectSerializer(serializers.ModelSerializer):
             'start_date',
             'end_date',
             'skill',
-            'tool',
             'image',
             'video',
             'link',
@@ -86,18 +84,6 @@ class SkillSerializer(serializers.ModelSerializer):
             'name',
             'category',
             'rating'
-        )
-
-
-class ToolSerializer(serializers.ModelSerializer):
-    category = serializers.StringRelatedField()
-
-    class Meta:
-        model = Tool
-        fields = (
-            'id',
-            'name',
-            'category',
         )
 
 

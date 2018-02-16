@@ -37,11 +37,6 @@ class SkillAdmin(admin.ModelAdmin):
     list_display = ("name", "category", "rating")
 
 
-@admin.register(Tool)
-class ToolAdmin(admin.ModelAdmin):
-    pass
-
-
 @admin.register(Video)
 class VideoAdmin(admin.ModelAdmin):
     pass

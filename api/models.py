@@ -5,6 +5,8 @@ class Author(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField(blank=True)
     link = models.ManyToManyField("Link", blank=True)
+    photo = models.OneToOneField("Image", blank=True)
+
     def __unicode__(self):
        return self.name
 
@@ -34,6 +36,7 @@ class Image(models.Model):
 
 
 class Link(models.Model):
+    category = models.ManyToManyField("Category", blank=True)
     name = models.CharField(max_length=200)
     src = models.URLField(blank=True)
     image = models.OneToOneField(
@@ -54,7 +57,6 @@ class Project(models.Model):
     start_date = models.DateField(null=True)
     end_date = models.DateField(null=True)
     skill = models.ManyToManyField("Skill", blank=True)
-    tool = models.ManyToManyField("Tool", blank=True)
     image = models.ManyToManyField("Image", blank=True)
     video = models.ManyToManyField("Video", blank=True)
 
@@ -74,14 +76,6 @@ class Skill(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     rating = models.CharField(max_length=50, choices=choices)
 
-    def __unicode__(self):
-       return self.name
-
-
-class Tool(models.Model):
-    name = models.CharField(max_length=200)
-    category = models.ManyToManyField("Category", blank=True)
-    
     def __unicode__(self):
        return self.name
 
