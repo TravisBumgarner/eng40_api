@@ -6,13 +6,13 @@ from .viewsets import *
 router = routers.DefaultRouter()
 
 # List alphabetically for django admin
-router.register(r'authors', AuthorViewSet)
+# router.register(r'authors', AuthorViewSet)
 router.register(r'categories', CategoryViewSet)
-router.register(r'images', ImageViewSet)
-router.register(r'links', LinkViewSet)
+# router.register(r'images', ImageViewSet)
+# router.register(r'links', LinkViewSet)
 router.register(r'projects', ProjectViewSet)
 router.register(r'skills', SkillViewSet)
-router.register(r'videos', VideoViewSet)
+# router.register(r'videos', VideoViewSet)
 
 
 urlpatterns = [

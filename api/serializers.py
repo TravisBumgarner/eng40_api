@@ -2,16 +2,18 @@ from .models import *
 from rest_framework import serializers
 
 
-class AuthorSerializer(serializers.ModelSerializer):
-    link = serializers.StringRelatedField(many=True)
-
-    class Meta:
-        model = Author
-        fields = (
-            'name',
-            'description',
-            'link'
-        )
+# class AuthorSerializer(serializers.ModelSerializer):
+#     link = serializers.StringRelatedField(many=True)
+#     image = serializers.StringRelatedField()
+#
+#     class Meta:
+#         model = Author
+#         fields = (
+#             'name',
+#             'description',
+#             'link',
+#             'image'
+#         )
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -21,42 +23,38 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = ('id', 'name')
 
 
-class ImageSerializer(serializers.ModelSerializer):
+# class ImageSerializer(serializers.ModelSerializer):
+#
+#     class Meta:
+#         model = Image
+#         fields = (
+#             'id',
+#             'name',
+#             'src',
+#             'camera',
+#             'exposure',
+#         )
 
-    class Meta:
-        model = Image
-        fields = (
-            'id',
-            'name',
-            'external_src',
-            'local_src',
-            'camera',
-            'exposure',
-        )
 
-
-class LinkSerializer(serializers.ModelSerializer):
-    image_url = serializers.SerializerMethodField('get_image_url')
-
-    class Meta:
-        model = Link
-        fields = (
-            'id',
-            'name',
-            'src',
-            'image_url',
-        )
-
-    def get_image_url(self, obj):
-        return obj.src
+# class LinkSerializer(serializers.ModelSerializer):
+#     image_src = serializers.SerializerMethodField()
+#
+#     class Meta:
+#         model = Link
+#         fields = (
+#             'id',
+#             'name',
+#             'src',
+#             'image_src',
+#         )
 
 
 class ProjectSerializer(serializers.ModelSerializer):
     category = serializers.StringRelatedField(many=True)
-    image = serializers.StringRelatedField(many=True)
-    video = serializers.StringRelatedField(many=True)
+    # image = serializers.StringRelatedField(many=True)
+    # video = serializers.StringRelatedField(many=True)
     skill = serializers.StringRelatedField(many=True)
-    link = serializers.StringRelatedField(many=True)
+    # link = serializers.StringRelatedField(many=True)
 
     class Meta:
         model = Project
@@ -64,13 +62,13 @@ class ProjectSerializer(serializers.ModelSerializer):
             'id',
             'name',
             'category',
-            'description',
+            # 'description',
             'start_date',
             'end_date',
             'skill',
-            'image',
-            'video',
-            'link',
+            # 'image',
+            # 'video',
+            # 'link',
         )
 
 
@@ -83,17 +81,17 @@ class SkillSerializer(serializers.ModelSerializer):
             'id',
             'name',
             'category',
-            'rating'
+            # 'rating'
         )
 
 
-class VideoSerializer(serializers.ModelSerializer):
-    category = serializers.StringRelatedField()
-
-    class Meta:
-        model = Video
-        fields = (
-            'id',
-            'name',
-            'src'
-        )
+# class VideoSerializer(serializers.ModelSerializer):
+#     category = serializers.StringRelatedField()
+#
+#     class Meta:
+#         model = Video
+#         fields = (
+#             'id',
+#             'name',
+#             'src'
+#         )
