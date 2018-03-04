@@ -2,18 +2,18 @@ from .models import *
 from rest_framework import serializers
 
 
-# class AuthorSerializer(serializers.ModelSerializer):
-#     link = serializers.StringRelatedField(many=True)
-#     image = serializers.StringRelatedField()
-#
-#     class Meta:
-#         model = Author
-#         fields = (
-#             'name',
-#             'description',
-#             'link',
-#             'image'
-#         )
+class AuthorSerializer(serializers.ModelSerializer):
+    link = serializers.StringRelatedField(many=True)
+    image = serializers.StringRelatedField()
+
+    class Meta:
+        model = Author
+        fields = (
+            'name',
+            'description',
+            'link',
+            'image'
+        )
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -23,30 +23,27 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = ('id', 'name')
 
 
-# class ImageSerializer(serializers.ModelSerializer):
-#
-#     class Meta:
-#         model = Image
-#         fields = (
-#             'id',
-#             'name',
-#             'src',
-#             'camera',
-#             'exposure',
-#         )
+class ImageSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Image
+        fields = (
+            'id',
+            'name',
+            'src',
+        )
 
 
-# class LinkSerializer(serializers.ModelSerializer):
-#     image_src = serializers.SerializerMethodField()
-#
-#     class Meta:
-#         model = Link
-#         fields = (
-#             'id',
-#             'name',
-#             'src',
-#             'image_src',
-#         )
+class LinkSerializer(serializers.ModelSerializer):
+    image_src = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Link
+        fields = (
+            'id',
+            'name',
+            'src',
+        )
 
 
 class ProjectSerializer(serializers.ModelSerializer):
@@ -68,7 +65,7 @@ class ProjectSerializer(serializers.ModelSerializer):
             'skill',
             # 'image',
             # 'video',
-            # 'link',
+            'link',
         )
 
 

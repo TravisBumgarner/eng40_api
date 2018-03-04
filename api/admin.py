@@ -12,15 +12,15 @@ class LinkInline(admin.TabularInline):
     model = Link
     extra = 3
 
-#
-# class ImageInline(admin.TabularInline):
-#     model = Image
-#     extra = 3
-#
-#
-# @admin.register(Author)
-# class AuthorAdmin(admin.ModelAdmin):
-#     pass
+
+class ImageInline(admin.TabularInline):
+    model = Image
+    extra = 3
+
+
+@admin.register(Author)
+class AuthorAdmin(admin.ModelAdmin):
+    pass
 
 
 @admin.register(Category)
@@ -33,15 +33,14 @@ class LocationAdmin(admin.ModelAdmin):
     pass
 
 
+@admin.register(Image)
+class ImageAdmin(admin.ModelAdmin):
+    pass
 
-# @admin.register(Image)
-# class ImageAdmin(admin.ModelAdmin):
-#     pass
-#
-#
-# @admin.register(Link)
-# class LinkAdmin(admin.ModelAdmin):
-#     pass
+
+@admin.register(Link)
+class LinkAdmin(admin.ModelAdmin):
+    pass
 
 
 @admin.register(Organization)

@@ -3,10 +3,10 @@ from rest_framework.viewsets import ReadOnlyModelViewSet
 from .serializers import *
 from models import *
 
-# class AuthorViewSet(ReadOnlyModelViewSet):
-#     queryset = Author.objects.all()
-#     serializer_class = AuthorSerializer
-#     pagination_class = None
+class AuthorViewSet(ReadOnlyModelViewSet):
+    queryset = Author.objects.all()
+    serializer_class = AuthorSerializer
+    pagination_class = None
 
 
 class CategoryViewSet(ReadOnlyModelViewSet):
@@ -21,10 +21,10 @@ class CategoryViewSet(ReadOnlyModelViewSet):
 #     pagination_class = None
 
 
-# class LinkViewSet(ReadOnlyModelViewSet):
-#     queryset = Link.objects.all()
-#     serializer_class = LinkSerializer
-#     pagination_class = None
+class LinkViewSet(ReadOnlyModelViewSet):
+    queryset = Link.objects.all()
+    serializer_class = LinkSerializer
+    pagination_class = None
 
 
 class ProjectViewSet(ReadOnlyModelViewSet):

@@ -6,7 +6,7 @@ from .viewsets import *
 router = routers.DefaultRouter()
 
 # List alphabetically for django admin
-# router.register(r'authors', AuthorViewSet)
+router.register(r'authors', AuthorViewSet)
 router.register(r'categories', CategoryViewSet)
 # router.register(r'images', ImageViewSet)
 # router.register(r'links', LinkViewSet)

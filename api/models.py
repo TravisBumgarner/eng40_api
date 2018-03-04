@@ -1,16 +1,6 @@
 from django.db import models
 
 
-# class Author(models.Model):
-#     name = models.CharField(max_length=200)
-#     description = models.TextField()
-#     link = models.ManyToManyField("Link", blank=True)
-#     image = models.OneToOneField("Image", blank=True, null=True)
-#
-#     def __unicode__(self):
-#          return self.name
-
-
 class Category(models.Model):
     name = models.CharField(max_length=200, unique=True)
 
@@ -28,13 +18,13 @@ class Location(models.Model):
         return self.name
 
 
-# class Image(models.Model):
-#     name = models.CharField(max_length=200)
-#     src = models.ImageField(blank=True, null=True)
-#     project = models.ForeignKey(Project, on_delete=models.CASCADE, blank=True, null=True, related_name="image")
-#
-#     def __unicode__(self):
-#          return self.name
+class Image(models.Model):
+    name = models.CharField(max_length=200)
+    src = models.ImageField(blank=True, null=True)
+
+    def __unicode__(self):
+         return self.name
+
 
 class Project(models.Model):
     name = models.CharField(max_length=200, unique=True)
@@ -51,20 +41,13 @@ class Project(models.Model):
         return self.name
 
 
-
 class Link(models.Model):
     name = models.CharField(max_length=200)
     src = models.URLField(blank=True, null=True)
     project = models.ForeignKey(Project, on_delete=models.CASCADE, blank=True, null=True, related_name='link')
-    # image = models.OneToOneField(
-    #     Image,
-    #     blank=True,
-    #     null=True,
-    #     on_delete=models.CASCADE
-    # )
 
     def __unicode__(self):
-         return self.name
+         return '{0:50s} - {1}'.format(self.name, self.src)
 
 
 class Organization(models.Model):
@@ -85,6 +68,16 @@ class Skill(models.Model):
     name = models.CharField(max_length=200, unique=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True)
     # rating = models.CharField(max_length=50, choices=choices, blank=True, null=True)
+
+    def __unicode__(self):
+        return self.name
+
+
+class Author(models.Model):
+    name = models.CharField(max_length=200)
+    description = models.TextField()
+    link = models.ManyToManyField("Link", blank=True)
+    image = models.OneToOneField("Image", blank=True, null=True)
 
     def __unicode__(self):
         return self.name
