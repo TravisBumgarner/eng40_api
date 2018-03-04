@@ -110,7 +110,6 @@ CORS_ORIGIN_WHITELIST = (
     'localhost:3000',
 )
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 

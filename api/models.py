@@ -47,7 +47,7 @@ class Link(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE, blank=True, null=True, related_name='link')
 
     def __unicode__(self):
-         return '{0:50s} - {1}'.format(self.name, self.src)
+         return self.name
 
 
 class Organization(models.Model):

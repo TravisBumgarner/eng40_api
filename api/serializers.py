@@ -2,19 +2,6 @@ from .models import *
 from rest_framework import serializers
 
 
-class AuthorSerializer(serializers.ModelSerializer):
-    link = serializers.StringRelatedField(many=True)
-    image = serializers.StringRelatedField()
-
-    class Meta:
-        model = Author
-        fields = (
-            'name',
-            'description',
-            'link',
-            'image'
-        )
-
 
 class CategorySerializer(serializers.ModelSerializer):
 
@@ -35,7 +22,6 @@ class ImageSerializer(serializers.ModelSerializer):
 
 
 class LinkSerializer(serializers.ModelSerializer):
-    image_src = serializers.SerializerMethodField()
 
     class Meta:
         model = Link
@@ -43,6 +29,20 @@ class LinkSerializer(serializers.ModelSerializer):
             'id',
             'name',
             'src',
+        )
+
+
+class AuthorSerializer(serializers.ModelSerializer):
+    link = LinkSerializer(read_only=True, many=True)
+    image = serializers.StringRelatedField()
+
+    class Meta:
+        model = Author
+        fields = (
+            'name',
+            'description',
+            'link',
+            'image'
         )
 
 
