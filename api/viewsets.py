@@ -1,4 +1,5 @@
 from rest_framework.viewsets import ReadOnlyModelViewSet
+from rest_framework.response import Response
 
 from .serializers import *
 from models import *
@@ -31,6 +32,18 @@ class ProjectViewSet(ReadOnlyModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
     pagination_class = None
+
+    def list(self, request, *args, **kwargs):
+        response_data = {}
+        for project in self.queryset:
+            serializer = self.get_serializer(project)
+            response_data[project.id] = serializer.data
+        return Response(response_data)
+
+
+
+        serializer = UserSerializer(user)
+        return Response(serializer.data)
 
 
 class SkillViewSet(ReadOnlyModelViewSet):
