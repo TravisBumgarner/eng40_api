@@ -47,10 +47,10 @@ class AuthorSerializer(serializers.ModelSerializer):
 
 
 class ProjectSerializer(serializers.ModelSerializer):
-    category = serializers.StringRelatedField(many=True)
+    # category = serializers.StringRelatedField(many=True)
     # image = serializers.StringRelatedField(many=True)
     # video = serializers.StringRelatedField(many=True)
-    skill = serializers.StringRelatedField(many=True)
+    # skill = serializers.StringRelatedField(many=True)
     # link = serializers.StringRelatedField(many=True)
 
     class Meta:

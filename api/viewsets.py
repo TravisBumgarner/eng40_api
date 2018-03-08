@@ -40,8 +40,6 @@ class ProjectViewSet(ReadOnlyModelViewSet):
             response_data[project.id] = serializer.data
         return Response(response_data)
 
-
-
         serializer = UserSerializer(user)
         return Response(serializer.data)
 
@@ -50,6 +48,16 @@ class SkillViewSet(ReadOnlyModelViewSet):
     queryset = Skill.objects.all()
     serializer_class = SkillSerializer
     pagination_class = None
+
+    def list(self, request, *args, **kwargs):
+        response_data = {}
+        for skill in self.queryset:
+            serializer = self.get_serializer(skill)
+            response_data[skill.id] = serializer.data
+        return Response(response_data)
+
+        serializer = UserSerializer(user)
+        return Response(serializer.data)
 
 
 # class VideoViewSet(ReadOnlyModelViewSet):
