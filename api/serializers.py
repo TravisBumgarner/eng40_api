@@ -48,7 +48,7 @@ class AuthorSerializer(serializers.ModelSerializer):
 
 class ProjectSerializer(serializers.ModelSerializer):
     # category = serializers.StringRelatedField(many=True)
-    # image = serializers.StringRelatedField(many=True)
+    preview_img = ImageSerializer(read_only=True)
     # video = serializers.StringRelatedField(many=True)
     # skill = serializers.StringRelatedField(many=True)
     # link = serializers.StringRelatedField(many=True)
@@ -66,6 +66,7 @@ class ProjectSerializer(serializers.ModelSerializer):
             # 'image',
             # 'video',
             'link',
+            'preview_img',
         )
 
 

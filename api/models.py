@@ -30,6 +30,7 @@ class Project(models.Model):
     name = models.CharField(max_length=200, unique=True)
     category = models.ManyToManyField("Category", blank=True)
     organization = models.ManyToManyField("Organization", blank=True)
+    preview_img = models.OneToOneField("Image", blank=True, null=True)
     headline = models.TextField(blank=True, null=True)
     start_date = models.DateField(null=True)
     end_date = models.DateField(null=True)
