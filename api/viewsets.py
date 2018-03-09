@@ -16,6 +16,14 @@ class CategoryViewSet(ReadOnlyModelViewSet):
     pagination_class = None
 
 
+    def list(self, request, *args, **kwargs):
+        response_data = {}
+        for category in self.queryset:
+            serializer = self.get_serializer(category)
+            response_data[category.id] = serializer.data
+        return Response(response_data)
+
+
 # class ImageViewSet(ReadOnlyModelViewSet):
 #     queryset = Image.objects.all()
 #     serializer_class = ImageSerializer
@@ -40,9 +48,6 @@ class ProjectViewSet(ReadOnlyModelViewSet):
             response_data[project.id] = serializer.data
         return Response(response_data)
 
-        serializer = UserSerializer(user)
-        return Response(serializer.data)
-
 
 class SkillViewSet(ReadOnlyModelViewSet):
     queryset = Skill.objects.all()
@@ -55,9 +60,6 @@ class SkillViewSet(ReadOnlyModelViewSet):
             serializer = self.get_serializer(skill)
             response_data[skill.id] = serializer.data
         return Response(response_data)
-
-        serializer = UserSerializer(user)
-        return Response(serializer.data)
 
 
 # class VideoViewSet(ReadOnlyModelViewSet):
