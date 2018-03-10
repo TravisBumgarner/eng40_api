@@ -1,3 +1,4 @@
+from django.core.validators import validate_email, URLValidator
 from django.db import models
 
 
@@ -91,5 +92,11 @@ class Author(models.Model):
 #     def __unicode__(self):
 #         return self.name
 
+
+class Contact(models.Model):
+    name = models.CharField(max_length=200)
+    website = models.URLField(blank=True)
+    email = models.EmailField()
+    message = models.TextField(max_length=2500)
 
 

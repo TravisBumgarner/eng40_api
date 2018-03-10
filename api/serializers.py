@@ -93,3 +93,15 @@ class SkillSerializer(serializers.ModelSerializer):
 #             'name',
 #             'src'
 #         )
+
+
+class ContactSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Contact
+        fields = (
+            'name',
+            'email',
+            'website',
+            'message',
+        )

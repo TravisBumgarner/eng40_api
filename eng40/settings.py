@@ -74,6 +74,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'eng40.wsgi.application'
 
+REST_FRAMEWORK = {
+    'DEFAULT_THROTTLE_CLASSES': (
+        'rest_framework.throttling.ScopedRateThrottle',
+    ),
+    'DEFAULT_THROTTLE_RATES': {
+        'contact.create': '100/day', # TODO CHANGE THIS BACK
+    }
+}
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases

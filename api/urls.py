@@ -13,7 +13,7 @@ router.register(r'categories', CategoryViewSet)
 router.register(r'projects', ProjectViewSet)
 router.register(r'skills', SkillViewSet)
 # router.register(r'videos', VideoViewSet)
-
+router.register(r'contact', ContactViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),
