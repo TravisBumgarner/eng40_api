@@ -51,7 +51,7 @@ class ProjectSerializer(serializers.ModelSerializer):
     preview_img = ImageSerializer(read_only=True)
     # video = serializers.StringRelatedField(many=True)
     # skill = serializers.StringRelatedField(many=True)
-    # link = serializers.StringRelatedField(many=True)
+    link = LinkSerializer(read_only=True, many=True)
 
     class Meta:
         model = Project
