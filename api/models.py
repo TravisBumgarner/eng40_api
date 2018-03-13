@@ -100,3 +100,24 @@ class Contact(models.Model):
     message = models.TextField(max_length=2500)
 
 
+class Keyword(models.Model):
+    name = models.CharField(max_length=200, unique=True)
+
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = 'Keyword'
+
+
+class Post(models.Model):
+    name = models.CharField(max_length=200, unique=True)
+    keyword = models.ManyToManyField("Keyword", blank=True)
+    preview_img = models.OneToOneField("Image", blank=True, null=True)
+    headline = models.TextField(blank=True, null=True)
+    created_date = models.DateField(null=True)
+
+    def __unicode__(self):
+        return self.name
+
+
