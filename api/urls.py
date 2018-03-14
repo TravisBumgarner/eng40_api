@@ -14,6 +14,8 @@ router.register(r'projects', ProjectViewSet)
 router.register(r'skills', SkillViewSet)
 # router.register(r'videos', VideoViewSet)
 router.register(r'contact', ContactViewSet)
+router.register(r'organization', OrganizationViewSet)
+router.register(r'location', LocationViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),

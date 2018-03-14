@@ -12,6 +12,32 @@ class AuthorViewSet(ReadOnlyModelViewSet):
     pagination_class = None
 
 
+class LocationViewSet(ReadOnlyModelViewSet):
+    queryset = Location.objects.all()
+    serializer_class = LocationSerializer
+    pagination_class = None
+
+    def list(self, request, *args, **kwargs):
+        response_data = {}
+        for location in self.queryset:
+            serializer = self.get_serializer(location)
+            response_data[location.id] = serializer.data
+        return Response(response_data)
+
+
+class OrganizationViewSet(ReadOnlyModelViewSet):
+    queryset = Organization.objects.all()
+    serializer_class = OrganizationSerializer
+    pagination_class = None
+
+    def list(self, request, *args, **kwargs):
+        response_data = {}
+        for organization in self.queryset:
+            serializer = self.get_serializer(organization)
+            response_data[organization.id] = serializer.data
+        return Response(response_data)
+
+
 class CategoryViewSet(ReadOnlyModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer

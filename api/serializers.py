@@ -32,6 +32,26 @@ class LinkSerializer(serializers.ModelSerializer):
         )
 
 
+class LocationSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Link
+        fields = (
+            'id',
+            'name',
+        )
+
+
+class OrganizationSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Link
+        fields = (
+            'id',
+            'name',
+        )
+
+
 class AuthorSerializer(serializers.ModelSerializer):
     link = LinkSerializer(read_only=True, many=True)
     image = serializers.StringRelatedField()
