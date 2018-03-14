@@ -47,10 +47,7 @@ class AuthorSerializer(serializers.ModelSerializer):
 
 
 class ProjectSerializer(serializers.ModelSerializer):
-    # category = serializers.StringRelatedField(many=True)
     preview_img = ImageSerializer(read_only=True)
-    # video = serializers.StringRelatedField(many=True)
-    # skill = serializers.StringRelatedField(many=True)
     link = LinkSerializer(read_only=True, many=True)
 
     class Meta:
@@ -59,12 +56,14 @@ class ProjectSerializer(serializers.ModelSerializer):
             'id',
             'name',
             'category',
-            # 'description',
+            'organization',
+            'location',
+            'headline',
+            'description',
             'start_date',
             'end_date',
             'skill',
             # 'image',
-            # 'video',
             'link',
             'preview_img',
         )

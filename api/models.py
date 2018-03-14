@@ -33,6 +33,7 @@ class Project(models.Model):
     organization = models.ManyToManyField("Organization", blank=True)
     preview_img = models.OneToOneField("Image", blank=True, null=True)
     headline = models.TextField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
     start_date = models.DateField(null=True)
     end_date = models.DateField(null=True)
     skill = models.ManyToManyField("Skill", blank=True)
