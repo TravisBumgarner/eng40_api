@@ -13,8 +13,8 @@ class LinkInline(admin.TabularInline):
     extra = 3
 
 
-class ImageInline(admin.TabularInline):
-    model = Image
+class GalleryInline(admin.TabularInline):
+    model = Project.gallery.through
     extra = 3
 
 
@@ -52,7 +52,7 @@ class OrganizationAdmin(admin.ModelAdmin):
 class ProjectAdmin(admin.ModelAdmin):
     inlines = (
         LinkInline,
-        # ImageInline
+        GalleryInline,
     )
 
     filter_horizontal = (
@@ -69,6 +69,7 @@ class ProjectAdmin(admin.ModelAdmin):
 
     list_display = (
         'name',
+        'headline',
     )
 
 

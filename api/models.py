@@ -31,13 +31,14 @@ class Project(models.Model):
     name = models.CharField(max_length=200, unique=True)
     category = models.ManyToManyField("Category", blank=True)
     organization = models.ManyToManyField("Organization", blank=True)
-    preview_img = models.OneToOneField("Image", blank=True, null=True)
+    preview_img = models.OneToOneField("Image", blank=True, null=True, related_name="preview_img")
     headline = models.TextField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     start_date = models.DateField(null=True)
     end_date = models.DateField(null=True)
     skill = models.ManyToManyField("Skill", blank=True)
     location = models.ManyToManyField("Location", blank=True)
+    gallery = models.ManyToManyField("Image", blank=True, related_name="gallery")
 
     def __unicode__(self):
         return self.name
