@@ -51,10 +51,10 @@ class CategoryViewSet(ReadOnlyModelViewSet):
         return Response(response_data)
 
 
-# class ImageViewSet(ReadOnlyModelViewSet):
-#     queryset = Image.objects.all()
-#     serializer_class = ImageSerializer
-#     pagination_class = None
+class ImageViewSet(ReadOnlyModelViewSet):
+    queryset = Image.objects.all()
+    serializer_class = ImageSerializer
+    pagination_class = None
 
 
 class LinkViewSet(ReadOnlyModelViewSet):

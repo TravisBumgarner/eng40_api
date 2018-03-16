@@ -19,14 +19,6 @@ class Location(models.Model):
         return self.name
 
 
-class Image(models.Model):
-    name = models.CharField(max_length=200)
-    src = models.ImageField(blank=True, null=True)
-
-    def __unicode__(self):
-         return self.name
-
-
 class Project(models.Model):
     name = models.CharField(max_length=200, unique=True)
     category = models.ManyToManyField("Category", blank=True)
@@ -38,7 +30,15 @@ class Project(models.Model):
     end_date = models.DateField(null=True)
     skill = models.ManyToManyField("Skill", blank=True)
     location = models.ManyToManyField("Location", blank=True)
-    gallery = models.ManyToManyField("Image", blank=True, related_name="gallery")
+
+    def __unicode__(self):
+        return self.name
+
+
+class Image(models.Model):
+    name = models.CharField(max_length=200)
+    src = models.ImageField(blank=True, null=True)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, blank=True, null=True, related_name='image')
 
     def __unicode__(self):
         return self.name
@@ -50,7 +50,7 @@ class Link(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE, blank=True, null=True, related_name='link')
 
     def __unicode__(self):
-         return self.name
+        return self.name
 
 
 class Organization(models.Model):

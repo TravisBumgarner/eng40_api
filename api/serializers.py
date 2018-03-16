@@ -2,7 +2,6 @@ from .models import *
 from rest_framework import serializers
 
 
-
 class CategorySerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -71,6 +70,7 @@ class ProjectSerializer(serializers.ModelSerializer):
     link = LinkSerializer(read_only=True, many=True)
     organization = OrganizationSerializer(read_only=True, many=True)
     location = LocationSerializer(read_only=True, many=True)
+    image = ImageSerializer(read_only=True, many=True)
 
     class Meta:
         model = Project
@@ -85,7 +85,7 @@ class ProjectSerializer(serializers.ModelSerializer):
             'start_date',
             'end_date',
             'skill',
-            # 'image',
+            'image',
             'link',
             'preview_img',
         )

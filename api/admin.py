@@ -12,10 +12,10 @@ class LinkInline(admin.TabularInline):
     model = Link
     extra = 3
 
+class ImageInline(admin.TabularInline):
+    model = Image
+    extra = 10
 
-class GalleryInline(admin.TabularInline):
-    model = Project.gallery.through
-    extra = 3
 
 
 @admin.register(Author)
@@ -52,7 +52,7 @@ class OrganizationAdmin(admin.ModelAdmin):
 class ProjectAdmin(admin.ModelAdmin):
     inlines = (
         LinkInline,
-        GalleryInline,
+        ImageInline,
     )
 
     filter_horizontal = (
