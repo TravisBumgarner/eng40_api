@@ -5,8 +5,9 @@ from django.core.management.base import BaseCommand
 from api.models import Project, Image
 from eng40.settings import BASE_DIR
 
-INPUT_DIR = 'media/inputs'
+INPUT_DIR = 'inputs'
 
+root_photos_dir = os.path.join(BASE_DIR, INPUT_DIR)
 
 class Command(BaseCommand):
     def add_arguments(self, parser):
@@ -36,14 +37,16 @@ class Command(BaseCommand):
             return
 
         if options['upload']:
-            root_photos_dir = os.path.join(BASE_DIR, INPUT_DIR)
             projects = Project.objects.all()
-            p = projects[0]
-            project_dir = os.path.join(root_photos_dir, p.name)
-            for img_name in os.listdir(project_dir):
-                file_name = os.path.join(project_dir, img_name)
-                f = File(open(file_name, 'rb'))
-                i = Image(name=img_name, src=f)
-                i.save()
-                p.image.add(i)
-            p.save()
+            for p in projects:
+                project_dir = os.path.join(root_photos_dir, p.name)
+                img_names = os.listdir(project_dir)
+                if img_names:
+                    for img_name in img_names:
+                        file_name = os.path.join(project_dir, img_name)
+                        file_data = open(file_name, 'rb')
+                        f = File(name=img_name, file=file_data, )
+                        i = Image(name=img_name, src=f)
+                        i.save()
+                        p.image.add(i)
+                    p.save()
