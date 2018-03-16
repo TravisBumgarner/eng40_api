@@ -69,6 +69,8 @@ class AuthorSerializer(serializers.ModelSerializer):
 class ProjectSerializer(serializers.ModelSerializer):
     preview_img = ImageSerializer(read_only=True)
     link = LinkSerializer(read_only=True, many=True)
+    organization = OrganizationSerializer(read_only=True, many=True)
+    location = LocationSerializer(read_only=True, many=True)
 
     class Meta:
         model = Project
