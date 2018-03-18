@@ -44,14 +44,6 @@ class Image(models.Model):
         return self.name
 
 
-class Link(models.Model):
-    name = models.CharField(max_length=200)
-    src = models.URLField(blank=True, null=True)
-    project = models.ForeignKey(Project, on_delete=models.CASCADE, blank=True, null=True, related_name='link')
-
-    def __unicode__(self):
-        return self.name
-
 
 class Organization(models.Model):
     name = models.CharField(max_length=200)
@@ -71,7 +63,6 @@ class Skill(models.Model):
 class Author(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField()
-    link = models.ManyToManyField("Link", blank=True)
     image = models.OneToOneField("Image", blank=True, null=True)
 
     def __unicode__(self):
@@ -93,6 +84,16 @@ class Keyword(models.Model):
 
     class Meta:
         verbose_name_plural = 'Keyword'
+
+
+class Link(models.Model):
+    name = models.CharField(max_length=200)
+    src = models.URLField(blank=True, null=True)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, blank=True, null=True, related_name='link')
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, blank=True, null=True, related_name='link')
+
+    def __unicode__(self):
+        return self.name
 
 
 class Post(models.Model):

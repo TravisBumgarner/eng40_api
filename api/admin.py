@@ -20,7 +20,10 @@ class ImageInline(admin.TabularInline):
 
 @admin.register(Author)
 class AuthorAdmin(admin.ModelAdmin):
-    pass
+    inlines = (
+        LinkInline,
+    )
+
 
 
 @admin.register(Category)
