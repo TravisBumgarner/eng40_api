@@ -56,6 +56,13 @@ class ImageViewSet(ReadOnlyModelViewSet):
     serializer_class = ImageSerializer
     pagination_class = None
 
+    def list(self, request, *args, **kwargs):
+        response_data = {}
+        for image in self.queryset:
+            serializer = self.get_serializer(image)
+            response_data[image.id] = serializer.data
+        return Response(response_data)
+
 
 class LinkViewSet(ReadOnlyModelViewSet):
     queryset = Link.objects.all()
