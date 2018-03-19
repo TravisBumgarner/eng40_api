@@ -21,7 +21,6 @@ from eng40 import settings
 
 urlpatterns = [
     url(r'^', include('api.urls')),
-    # url(r'^uploader/', include('file_uploader.urls')),
     url(r'^admin/', admin.site.urls),
 ]
 
