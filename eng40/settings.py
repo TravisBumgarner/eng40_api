@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/1.11/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
-
+from api.utils import send
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -20,12 +20,17 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'u)skf7o6)jlycx0(*=(lgd&j=u6rx0&g(#25()^@s5$5659!p7'
+SECRET_KEY = '\x9f\xe4\x07\xc90\xb4\xb3\x08.\xbf\xb3\x99\x8a3#\xed3\x82\x14\x9f6z6_Fo \x97\xea\xd4\x08\xce'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# This is checked from apache2/bin/start and adding SITE=prod to the beginning of the line 
+DEBUG = os.getenv('SITE','dev') == 'dev'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'eng40api.travisbumgarner.com',
+    'travisbumgarner.com',
+    'www.travisbumgarner.com',
+]
 
 
 # Application definition
@@ -118,8 +123,8 @@ AUTH_PASSWORD_VALIDATORS = [
 CORS_ORIGIN_WHITELIST = (
     'localhost:3000',
     'localhost:24971',
-    'http://eng40.travisbumgarner.com',
-    'http://travisbumgarner.com',
+    'eng40.travisbumgarner.com',
+    'travisbumgarner.com',
 )
 
 # Internationalization
@@ -139,7 +144,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_ROOT = '/home/tbumgarner/webapps/eng40_api_static/'
+STATIC_URL = 'http://eng40api.travisbumgarner.com/static/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
-MEDIA_URL = '/media/'
+MEDIA_ROOT = '/home/tbumgarner/webapps/eng40_api_media/'
+MEDIA_URL = 'http://eng40api.travisbumgarner.com/media/'
