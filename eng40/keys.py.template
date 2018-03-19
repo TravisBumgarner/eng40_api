@@ -1,3 +1,4 @@
 # Copy these from the pushover website.
+DJANGO_KEY = ""
 PUSHOVER_TOKEN = ""
 PUSHOVER_USER = ""
