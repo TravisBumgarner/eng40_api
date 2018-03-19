@@ -2,4 +2,5 @@
 .idea/
 *.pyc
 inputs/
+keys.py
 static/
