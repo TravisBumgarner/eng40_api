@@ -1,0 +1,6 @@
+1) Install python2.7, pip
+2) Install requirements.txt
+3) Keys
+ a) Copy eng40/keys.py.template -> eng40/keys.py
+ b) Generate Django key with os.urandom(32)
+ c) Get other keys from pushover site

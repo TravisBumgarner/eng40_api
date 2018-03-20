@@ -1,4 +1,3 @@
-from django.core.validators import validate_email, URLValidator
 from django.db import models
 
 
@@ -42,7 +41,6 @@ class Image(models.Model):
 
     def __unicode__(self):
         return self.name
-
 
 
 class Organization(models.Model):

@@ -5,8 +5,6 @@ from django.contrib import admin
 
 from api.models import *
 
-# Register your models here.
-
 
 class LinkInline(admin.TabularInline):
     model = Link
@@ -17,13 +15,11 @@ class ImageInline(admin.TabularInline):
     extra = 10
 
 
-
 @admin.register(Author)
 class AuthorAdmin(admin.ModelAdmin):
     inlines = (
         LinkInline,
     )
-
 
 
 @admin.register(Category)
@@ -83,8 +79,3 @@ class SkillAdmin(admin.ModelAdmin):
         'category',
         # 'rating'
     )
-
-
-# @admin.register(Video)
-# class VideoAdmin(admin.ModelAdmin):
-#     pass

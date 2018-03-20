@@ -6,6 +6,7 @@ from api.utils import send
 from .serializers import *
 from models import *
 
+
 class AuthorViewSet(ReadOnlyModelViewSet):
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
@@ -94,12 +95,6 @@ class SkillViewSet(ReadOnlyModelViewSet):
             serializer = self.get_serializer(skill)
             response_data[skill.id] = serializer.data
         return Response(response_data)
-
-
-# class VideoViewSet(ReadOnlyModelViewSet):
-#     queryset = Video.objects.all()
-#     serializer_class = VideoSerializer
-#     pagination_class = None
 
 
 class ContactViewSet(GenericViewSet):

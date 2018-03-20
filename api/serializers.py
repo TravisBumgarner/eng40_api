@@ -104,18 +104,6 @@ class SkillSerializer(serializers.ModelSerializer):
         )
 
 
-# class VideoSerializer(serializers.ModelSerializer):
-#     category = serializers.StringRelatedField()
-#
-#     class Meta:
-#         model = Video
-#         fields = (
-#             'id',
-#             'name',
-#             'src'
-#         )
-
-
 class ContactSerializer(serializers.ModelSerializer):
 
     class Meta:
