@@ -112,7 +112,7 @@ class ContactViewSet(GenericViewSet):
 
         form = ContactForm(r)
 
-        if not form.is_valid():
+        if not (len(r['name']) and len(r['email']) and len(r['message'])):
             is_submit_error = True
             detail = "Sorry, there was an error with your message, please check your inputs and try again."
 
