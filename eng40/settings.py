@@ -29,6 +29,7 @@ ALLOWED_HOSTS = [
     'eng40api.travisbumgarner.com',
     'travisbumgarner.com',
     'www.travisbumgarner.com',
+    'localhost',
 ]
 
 
