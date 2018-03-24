@@ -124,6 +124,7 @@ CORS_ORIGIN_WHITELIST = (
     'localhost:24971',
     'eng40.travisbumgarner.com',
     'travisbumgarner.com',
+    'www.travisbumgarner.com',
 )
 
 # Internationalization
