@@ -9,8 +9,10 @@ https://docs.djangoproject.com/en/1.11/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
-from keys import DJANGO_KEY
+from .keys import DJANGO_KEY
 import os
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -88,6 +90,11 @@ REST_FRAMEWORK = {
     }
 }
 
+sentry_sdk.init(
+    dsn="https://992594e5c87d4e18a1603273f89533c1@sentry.io/1315168",
+    integrations=[DjangoIntegration()]
+)
+
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
@@ -145,7 +152,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_ROOT = '/home/tbumgarner/webapps/eng40_api_static/'
-STATIC_URL = 'http://eng40api.travisbumgarner.com/static/'
+STATIC_URL = 'https://eng40api.travisbumgarner.com/static/'
 
 MEDIA_ROOT = '/home/tbumgarner/webapps/eng40_api_media/'
-MEDIA_URL = 'http://eng40api.travisbumgarner.com/media/'
+MEDIA_URL = 'https://eng40api.travisbumgarner.com/media/'
