@@ -4,7 +4,7 @@ from rest_framework.viewsets import ReadOnlyModelViewSet, GenericViewSet
 from api.forms import ContactForm
 from api.utils import send
 from .serializers import *
-from models import *
+from .models import *
 
 
 class AuthorViewSet(ReadOnlyModelViewSet):

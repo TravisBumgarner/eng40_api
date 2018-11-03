@@ -22,7 +22,7 @@ class Project(models.Model):
     name = models.CharField(max_length=200, unique=True)
     category = models.ManyToManyField("Category", blank=True)
     organization = models.ManyToManyField("Organization", blank=True)
-    preview_img = models.OneToOneField("Image", blank=True, null=True, related_name="preview_img")
+    preview_img = models.OneToOneField("Image", blank=True, on_delete=models.CASCADE, null=True, related_name="preview_img")
     headline = models.TextField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     start_date = models.DateField(null=True)
@@ -61,7 +61,7 @@ class Skill(models.Model):
 class Author(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField()
-    image = models.OneToOneField("Image", blank=True, null=True)
+    image = models.OneToOneField("Image", on_delete=models.CASCADE, blank=True, null=True)
 
     def __unicode__(self):
         return self.name
@@ -97,7 +97,7 @@ class Link(models.Model):
 class Post(models.Model):
     name = models.CharField(max_length=200, unique=True)
     keyword = models.ManyToManyField("Keyword", blank=True)
-    preview_img = models.OneToOneField("Image", blank=True, null=True)
+    preview_img = models.OneToOneField("Image", on_delete=models.CASCADE, blank=True, null=True)
     headline = models.TextField(blank=True, null=True)
     created_date = models.DateField(null=True)
 
