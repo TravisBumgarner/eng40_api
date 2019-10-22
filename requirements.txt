@@ -4,7 +4,7 @@ django-cors-headers==2.4.0
 django-rest-framework==0.1.0
 djangorestframework==3.9.0
 gunicorn==19.9.0
-Pillow==5.3.0
+Pillow==6.2.0
 pytz==2018.5
 sentry-sdk==0.5.2
 urllib3==1.24.1
